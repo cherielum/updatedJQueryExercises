@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    /*
+    Make a Todo List
+
+    0. Make it so that after entering the task description, in the text field and clicking the "Add Task" button, a new task appears inside the element with the id todo-list.
+    1. the ability to remove tasks (add an x button)
+    2. the ability to check off tasks - strikes them out wo removing (add a checkbox)
+    bonus. the ability to edit an existing task
+
+    */
+
+      $(function(){
+
+          var counter = 0; 
+
+          $("#add-button").click(function() {
+              var idOfLiTag = 'liTag' + counter ; 
+              counter++; 
+              var removeButton = $("<button>X</button>");
+              var content = $("#description").val();
+              var newLiTag = $("<li id=' " + idOfLiTag +" '>" + content + "</li>")
+
+
+              newLiTag.append(removeButton); //created a button to remove Button
+              // newLiTag.append(checkbox); //ADDED FOR BONUS
+              $("#todo-list").append(newLiTag); 
+
+
+            removeButton.click(function() {   //single button. $('.butt') is a list of butts
+              // alert('You clicked a button!');
+               // console.log(idOfLiTag);
+               // $("#" + idOfLiTag).remove();
+
+               $(this).parent().remove();
+            });
+
+
+            
+            //$("todo-list").on("click", "button", function() {   //this helps buttons for the future not just ones today. 
+              //$(this).parent().remove(); 
+
+            // })
+             
+
+
+
+          });
+
+      });
+
+
+
+    </script>
+    <style>
+    #wrapper {
+      max-width: 480px;
+      margin: auto;
+    }
+
+    #description, #search, #todo-list {
+      font-size: 1.5em;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <input id="description" type="text" name="description">
+      <button id="add-button">Add Task</button>
+      <ul id="todo-list">
+        <li>Feed the cat</li>
+      </ul>
+    </div>
+  </body>
+</html>
